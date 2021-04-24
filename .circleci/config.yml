@@ -158,7 +158,7 @@ jobs:
           key: scan-backend      
       - exit-pipeline   
 
-  #deploy-infrastructure:
+  deploy-infrastructure:
     #docker:
       # Docker image here that supports AWS CLI
     #steps:
