@@ -9,7 +9,7 @@ commands:
           when: on_fail
           command: |
             exit 1
-  #destroy-environment:
+  destroy-environment:
    # description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
     #parameters:
       # Add parameter here   
