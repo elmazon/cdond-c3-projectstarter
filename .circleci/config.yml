@@ -172,7 +172,7 @@ jobs:
             aws cloudformation deploy \
               --template-file .circleci/files/backend.yml \
               --tags project=uda_backend \
-              --stack-name "uda-backend-stack-${CIRCLE_WORKFLOW_ID}" \
+              --stack-name "uda-backend-stack-${{CIRCLE_WORKFLOW_ID}}" \
               --parameter-overrides ID="${CIRCLE_WORKFLOW_ID}" 
               
               
@@ -199,7 +199,7 @@ jobs:
           root: ~/Git
           paths:
             - cdond-c3-projectstarter/.circleci/ansible/inventory.txt
-      - exit-pipeline      
+      #- exit-pipeline      
       #- destroy-environment: 
        #   workflow_id: ${CIRCLE_WORKFLOW_ID}     
 
