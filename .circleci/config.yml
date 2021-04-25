@@ -204,12 +204,12 @@ jobs:
       - destroy-environment: 
          workflow_id: ${CIRCLE_WORKFLOW_ID}     
 
-  configure-infrastructure:
-    docker:
-      - image: python:3.7-alpine3.11
-    steps:
-      - checkout
-      - add_ssh_keys:
+  #configure-infrastructure:
+    #docker:
+      #- image: python:3.7-alpine3.11
+    #steps:
+     # - checkout
+      #- add_ssh_keys:
         #  fingerprints:
          #   - "a3:a3:4d:25:55:89:5d:05:6d:0c:47:49:ae:4c:ad:c0"
      # - attach workspace:
