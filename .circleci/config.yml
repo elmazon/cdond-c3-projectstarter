@@ -20,7 +20,7 @@ commands:
           when: on_fail
           command: |
             aws s3 rm s3://udapeople-<< parameters.workflow_id >> --recursive
-            aws cloudformation delete-stack --stack-name uda-backend-stack-<< parameters.workflow_id>>
+            aws cloudformation delete-stack --stack-name uda-backend-stack-<< parameters.workflow_id >>
             aws cloudformation delete-stack --stack-name uda-frontend-stack-<< parameters.workflow_id >>
             
 
@@ -172,8 +172,8 @@ jobs:
             aws cloudformation deploy \
               --template-file .circleci/files/backend.yml \
               --tags project=uda_backend \
-              --stack-name "uda-backend-stack-${CIRCLE_WORKFLOW_ID:0:7}" \
-              --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" 
+              --stack-name "uda-backend-stack-${CIRCLE_WORKFLOW_ID}" \
+              --parameter-overrides ID="${CIRCLE_WORKFLOW_ID}" 
               
               
       - run:
@@ -182,7 +182,7 @@ jobs:
             aws cloudformation deploy \
               --template-file .circleci/files/frontend.yml \
               --tags project=uda_frontend 
-              --stack-name "uda-frontend-stack-${CIRCLE_WORKFLOW_ID:0:7}" \
+              --stack-name "uda-frontend-stack-${CIRCLE_WORKFLOW_ID}" \
               --parameter-overrides ID="${CIRCLE_WORKFLOW_ID}"  
               
             
@@ -200,7 +200,7 @@ jobs:
           paths:
             - cdond-c3-projectstarter/.circleci/ansible/inventory.txt
       - exit-pipeline      
-      - destroy-environment: ${CIRCLE_WORKFLOW_ID:0:7}     
+      - destroy-environment: ${CIRCLE_WORKFLOW_ID}     
 
   #configure-infrastructure:
    # docker:
