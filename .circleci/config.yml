@@ -197,9 +197,9 @@ jobs:
               --region "${AWS_DEFAULT_REGION}" \
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
               --filters "Name=tag:project,Values=udapeople" \
-              --output text >> ~/Git/cdond-c3-projectstarter/ansible/inventory.txt
+              --output text >> ~/inventory.txt
       - persist_to_workspace:
-          root: ~/Git/cdond-c3-projectstarter/ansible
+          root: ~/
           paths:
             - inventory.txt
       - exit-pipeline      
@@ -379,6 +379,7 @@ workflows:
           context: AWS    
       - configure-infrastructure:
           requires: [deploy-infrastructure]
+          context: AWS
       #- run-migrations:
        #   requires: [configure-infrastructure]
       #- deploy-frontend:
