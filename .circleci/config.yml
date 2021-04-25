@@ -94,12 +94,14 @@ jobs:
             cd frontend
             npm i 
             npm run test 
-         no_output_timeout: 30m
+         # no_output_timeout: 30m
       - save_cache:
           paths:
             - frontend/node_modules
-          key: frontend-test      
+          key: frontend-test  
+      - no_output_timeout: 30m        
       - exit-pipeline 
+      
 
   test-backend:
     docker:
