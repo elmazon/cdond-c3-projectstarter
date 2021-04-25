@@ -195,11 +195,11 @@ jobs:
           command: |
               aws ec2 describe-instances \
               --region "${AWS_DEFAULT_REGION}" \
-              --query 'Reservations[*].Instances[*].PublicIpAddress'  --output text >> ~/inventory.txt 
-         #    --filters "Name=tag:project,Values=udapeople" \
-              
+              --query 'Reservations[*].Instances[*].PublicIpAddress' \
+              --filters "Name=tag:project,Values=udapeople" \
+              --output text >> ~/Git/cdond-c3-projectstarter/ansible/inventory.txt
       - persist_to_workspace:
-          root: ~/
+          root: ~/Git/cdond-c3-projectstarter/ansible
           paths:
             - inventory.txt
       - exit-pipeline      
@@ -215,7 +215,7 @@ jobs:
           fingerprints:
             - "eb:57:a0:9b:fb:9d:da:32:45:d4:52:92:1a:86:6f:2f"
       - attach_workspace:
-          at: ~/
+          at: ~/Git/cdond-c3-projectstarter/ansible
       - run:
           name: Install dependencies
           command: |
