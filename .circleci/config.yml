@@ -215,7 +215,7 @@ jobs:
           fingerprints:
             - "eb:57:a0:9b:fb:9d:da:32:45:d4:52:92:1a:86:6f:2f"
       - attach_workspace:
-          at: ~/Git/cdond-c3-projectstarter/ansible
+          at: ~/
       - run:
           name: Install dependencies
           command: |
