@@ -192,11 +192,10 @@ jobs:
       - run:
           name: Add back-end ip to ansible inventory
           command: |
-            aws ec2 describe-instances \
-            --region "${AWS_DEFAULT_REGION}" \
-            --query 'Reservations[*].Instances[*].PublicIpAddress' \
-            --filters "Name=tag:project,Values=udapeople" \
-            --output text >> ~/inventory.txt 
+              aws ec2 describe-instances \
+              --region "${AWS_DEFAULT_REGION}" \
+              --query 'Reservations[*].Instances[*].PublicIpAddress' \
+              --filters "Name=tag:project,Values=udapeople" --output text >> ~/inventory.txt 
       - persist_to_workspace:
           root: ~/
           paths:
@@ -205,12 +204,12 @@ jobs:
       - destroy-environment: 
          workflow_id: ${CIRCLE_WORKFLOW_ID}     
 
- ##configure-infrastructure:
-    #docker:
-      #- image: python:3.7-alpine3.11
-  #  steps:
-     # - checkout
-      #- add_ssh_keys:
+  configure-infrastructure:
+    docker:
+      - image: python:3.7-alpine3.11
+    steps:
+      - checkout
+      - add_ssh_keys:
         #  fingerprints:
          #   - "a3:a3:4d:25:55:89:5d:05:6d:0c:47:49:ae:4c:ad:c0"
      # - attach workspace:
@@ -343,18 +342,18 @@ jobs:
 workflows:
   default:
     jobs:
-     # - build-frontend
-      #- build-backend
-      #- test-frontend:
-      #    requires: [build-frontend]
-      #- test-backend:
-       #   requires: [build-backend]
-     # - scan-backend:
-      #    requires: [build-backend]
-     # - scan-frontend:
-      #    requires: [build-frontend]
+      - build-frontend
+      - build-backend
+      - test-frontend:
+          requires: [build-frontend]
+      - test-backend:
+          requires: [build-backend]
+      - scan-backend:
+          requires: [build-backend]
+      - scan-frontend:
+          requires: [build-frontend]
       - deploy-infrastructure:
-         # requires: [test-frontend, test-backend, scan-frontend, scan-backend]
+          requires: [test-frontend, test-backend, scan-frontend, scan-backend]
           filters:
             branches:
               only: [master]
