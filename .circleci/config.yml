@@ -167,8 +167,6 @@ jobs:
        - image: amazon/aws-cli
     steps:
       - checkout
-      - run: yum -y install tar
-      - run: yum -y install gzip
       - run:
           name: Ensure back-end infrastructure exists
           command: |
@@ -184,7 +182,7 @@ jobs:
           command: |
             aws cloudformation deploy \
             --template-file .circleci/files/frontend.yml \
-            --tags project=uda_frontend 
+            --tags project=uda_frontend \
             --stack-name "uda-frontend-stack-${CIRCLE_WORKFLOW_ID}" \
             --parameter-overrides ID="${CIRCLE_WORKFLOW_ID}"  
               
