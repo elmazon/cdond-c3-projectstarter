@@ -200,7 +200,8 @@ jobs:
           paths:
             - cdond-c3-projectstarter/.circleci/ansible/inventory.txt
       - exit-pipeline      
-      - destroy-environment: ${CIRCLE_WORKFLOW_ID}     
+      - destroy-environment: 
+          workflow_id: ${CIRCLE_WORKFLOW_ID}     
 
   #configure-infrastructure:
    # docker:
