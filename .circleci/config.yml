@@ -212,8 +212,8 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "a3:a3:4d:25:55:89:5d:05:6d:0c:47:49:ae:4c:ad:c0"
-      - attach workspace:
+            - "eb:57:a0:9b:fb:9d:da:32:45:d4:52:92:1a:86:6f:2f"
+      - attach_workspace:
           at: ~/
       - run:
           name: Install dependencies
@@ -234,8 +234,7 @@ jobs:
             echo TYPEORM_USERNAME=${TYPEORM_USERNAME} >> backend/.env
             echo TYPEORM_PASSWORD=${TYPEORM_PASSWORD} >> backend/.env
             echo TYPEORM_DATABASE=${TYPEORM_DATABASE} >> backend/.env
-            cat backend/.env      
-        
+            cat backend/.env        
       - run:
           name: Configure server
           no_output_timeout: 30m
