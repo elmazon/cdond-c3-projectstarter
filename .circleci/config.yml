@@ -193,9 +193,8 @@ jobs:
             aws ec2 describe-instances \
             --region "${AWS_DEFAULT_REGION}" \
             --query 'Reservations[*].Instances[*].PublicIpAddress' \
-            --filters "Name=tag:Name,Values=backend-{ID}" \
+            --filters "Name=tag:project,Values=udapeople" \
             --output text >> ~/inventory.txt 
-            cat ~/inventory.txt
       - persist_to_workspace:
           root: ~/
           paths:
