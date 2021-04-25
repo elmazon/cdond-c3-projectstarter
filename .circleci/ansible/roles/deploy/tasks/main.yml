@@ -1,0 +1,27 @@
+---
+- name: Move files to server
+  become: true
+  unarchive:
+    src: /root/project/backend.tar.gz
+    dest: /home/ubuntu/app
+
+- name: Install
+  become: true
+  shell: |
+    cd /home/ubuntu/app/backend
+    npm install
+- name: Build
+  become: true
+  shell: | 
+    cd /home/ubuntu/app/backend
+    npm run build
+- name: Run Migrations
+  become: true
+  shell: | 
+    cd /home/ubuntu/app/backend
+    npm run migrations
+- name: Start PM2
+  shell: |
+    cd /home/ubuntu/app/backend
+    pm2 start npm -- run start
+  
